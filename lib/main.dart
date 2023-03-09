@@ -15,8 +15,9 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   var questionIndex = 0;
   void answerQuestion() {
-    questionIndex += 1;
-    print("Answer chosen!");
+    setState(() {
+      questionIndex += 1;
+    });
     print(questionIndex);
   }
 
@@ -38,9 +39,7 @@ class MyAppState extends State<MyApp> {
             child: Text("Answer 1"),
           ),
           ElevatedButton(
-            onPressed: () {
-              print("Answer 2 chosen");
-            },
+            onPressed: answerQuestion,
             child: Text("Answer 2"),
           ),
           ElevatedButton(
