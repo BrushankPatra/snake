@@ -27,8 +27,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var questions = [
-      "What's your favorite color?",
-      "What's your favorite animal?",
+      {
+        "questionText": "What's your favorite color?",
+        "answers": ["Black", "Grey", "Pink", "Yelllow"]
+      },
+      {
+        "questionText": "What's your favorite animal?",
+        "answers": ["Dog", "Cat", "Rabbit", "Mouse"]
+      },
+      {
+        "questionText": "What's your favorite tech?",
+        "answers": ["Flutter", "React", ".NET", "Cloud Computing"]
+      }
     ];
     return MaterialApp(
       theme: ThemeData(
@@ -38,12 +48,17 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("My First App"),
         ),
-        body: Column(children: [
-          Question(questions[_questionIndex]),
-          Answer(_answerQuestion),
-          Answer(_answerQuestion),
-          Answer(_answerQuestion),
-        ]),
+        body: Column(
+          children: [
+            Question(
+              questions[_questionIndex]["questionText"],
+            ),
+            ...(questions[_questionIndex]["answers"] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList()
+          ],
+        ),
       ),
     );
   }
