@@ -30,6 +30,9 @@ class _MyAppState extends State<MyApp> {
       "What's your favorite animal?",
     ];
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: Text("My First App"),
